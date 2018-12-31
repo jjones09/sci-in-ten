@@ -1,0 +1,13 @@
+.HeaderLink {
+    padding: 1%;
+    margin-left: 1.5%;
+    margin-right: 1.5%;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 1%;
+}
+
+.HeaderLink:hover {
+    background-color: rgba(0,0,0,0.1);
+    color: #532563;
+}
