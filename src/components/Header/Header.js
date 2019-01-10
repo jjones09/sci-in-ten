@@ -9,12 +9,14 @@ class Header extends Component {
     super(props);
   
     this.state = {
-      selectedIndex: 0
+      selectedIndex: 0,
+      updatePageContent: this.props.updatePageContent
     };
   }
 
   setSelectedSection = (index) => {
     this.setState({selectedIndex: index});
+    this.state.updatePageContent(index);
   }
 
   getHeaderSections = () => {
