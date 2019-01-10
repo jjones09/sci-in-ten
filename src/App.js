@@ -4,9 +4,13 @@ import './App.css';
 import About from './components/About/About';
 import Header from './components/Header/Header';
 
-import rssToJson from 'rss-to-json';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+  
 
 class App extends Component {
+
+  targetRef = React.createRef();
+  targetElement = null;
 
   constructor(props) {
     super(props);
@@ -18,6 +22,8 @@ class App extends Component {
   }
 
   async componentDidMount() {
+    
+    disableBodyScroll(this.targetRef.current);
 
     let rss = fetch('http://mediapub.it.ox.ac.uk/feeds/142523/audio.xml').then(res => res.text()).then(xml => {
       console.log(xml);
@@ -36,14 +42,18 @@ class App extends Component {
     }
   }
 
+  getHeaderPosition() {
+    return this.state.selectedIndex === 0 ? 'at-bottom' : 'at-top';
+  }
+
   render() {
     return (
-      <div className="App">
-        <div className="App-contents">
-          {this.state.rss}
+      <div className="App" ref={this.targetElement}>
+        <div className="App-contents"></div>
+        <div className={"Selected-content " + this.getHeaderPosition()}>
+            <Header updatePageContent={this.updatePageContent.bind(this)}/>
+            {this.getPageContent()}
         </div>
-        <Header updatePageContent={this.updatePageContent.bind(this)}/>
-        {this.getPageContent()}
       </div>
     );
   }
