@@ -1,7 +1,7 @@
 .Header {
     display: block;
-    padding-top: 2%;
-    padding-bottom: 2%;
+    padding-top: 2.5vh;
+    padding-bottom: 2.5vh;
     text-align: center;
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
