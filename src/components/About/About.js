@@ -20,7 +20,7 @@ class About extends Component {
   render() {
     return (
       <div className="About">
-        <img src={require('../../assets/about-page-img.jpg')} />
+        <img src={require('../../assets/about-page-img.jpg')} height='200vh' />
         {this.getPodcastAbout()}
       </div>
     );

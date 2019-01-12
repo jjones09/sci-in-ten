@@ -3,6 +3,7 @@ import './App.css';
 
 import About from './components/About/About';
 import Header from './components/Header/Header';
+import SectionContent from './components/SectionContent/SectionContent';
 
 import ScrollLock from 'react-scrolllock';
   
@@ -50,7 +51,7 @@ class App extends Component {
         <div className="App-contents"></div>
         <div className={"Selected-content " + this.getHeaderPosition()}>
             <Header updatePageContent={this.updatePageContent.bind(this)}/>
-            {this.getPageContent()}
+            <SectionContent Content={this.getPageContent()} />
         </div>
         <ScrollLock/>
       </div>

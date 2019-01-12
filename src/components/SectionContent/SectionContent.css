@@ -1,0 +1,10 @@
+.SectionContainer {
+    background: rgba(0,0,0,0.2);
+    padding: 0 10vw;
+    height: 100vh;
+}
+
+.ContentContainer {
+    background: rgba(255,255,255,0.7);
+    box-shadow: 10px 5px 5px rgba(0,0,0,0.4);
+}
