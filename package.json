@@ -9,7 +9,8 @@
     "react-dom": "^16.7.0",
     "react-scripts": "2.1.2",
     "react-scrolllock": "^3.0.2",
-    "rss-to-json": "^1.0.4"
+    "rss-to-json": "^1.0.4",
+    "vh-for-mobile": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

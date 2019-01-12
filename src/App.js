@@ -48,8 +48,8 @@ class App extends Component {
   render() {
     return (
       <div className="App" ref={this.targetElement}>
-        <div className="App-contents"></div>
-        <div className={"Selected-content " + this.getHeaderPosition()}>
+        <div className="App-contents vh-for-mobile"></div>
+        <div className={"Selected-content vh-for-mobile " + this.getHeaderPosition()}>
             <Header updatePageContent={this.updatePageContent.bind(this)}/>
             <SectionContent Content={this.getPageContent()} />
         </div>
