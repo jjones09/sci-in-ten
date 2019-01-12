@@ -4,7 +4,7 @@ import './App.css';
 import About from './components/About/About';
 import Header from './components/Header/Header';
 
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import ScrollLock from 'react-scrolllock';
   
 
 class App extends Component {
@@ -22,8 +22,6 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    
-    disableBodyScroll(this.targetRef.current);
 
     let rss = fetch('http://mediapub.it.ox.ac.uk/feeds/142523/audio.xml').then(res => res.text()).then(xml => {
       console.log(xml);
@@ -54,6 +52,7 @@ class App extends Component {
             <Header updatePageContent={this.updatePageContent.bind(this)}/>
             {this.getPageContent()}
         </div>
+        <ScrollLock/>
       </div>
     );
   }

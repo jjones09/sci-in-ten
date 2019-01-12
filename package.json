@@ -8,6 +8,7 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-scripts": "2.1.2",
+    "react-scrolllock": "^3.0.2",
     "rss-to-json": "^1.0.4"
   },
   "scripts": {
