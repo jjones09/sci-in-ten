@@ -24,8 +24,8 @@ class App extends Component {
 
   async componentDidMount() {
 
-    let rss = fetch('http://mediapub.it.ox.ac.uk/feeds/142523/audio.xml').then(res => res.text()).then(xml => {
-      console.log(xml);
+    let rss = fetch('https://sci-in-ten-server.herokuapp.com/rss').then(res => res.text()).then(json => {
+      console.log(json);
     });
   }
 
