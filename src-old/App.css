@@ -1,0 +1,29 @@
+.App {
+  text-align: center;
+}
+
+.App-contents {
+  background-image: url("assets/scienceintenlogo.jpg");
+  height: 100vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.Selected-content {
+  z-index: 10;
+  position: absolute;
+  top: 90vh;
+  width: 100%;
+  transition: 1.5s;
+}
+
+.at-bottom {
+  background: rgb(255,255,255);
+}
+
+.at-top {
+  position: absolute;
+  top: 0
+}

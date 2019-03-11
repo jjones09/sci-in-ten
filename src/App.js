@@ -1,62 +1,33 @@
-import React, { Component } from 'react';
-import './App.css';
-
-import About from './components/About/About';
-import Header from './components/Header/Header';
-import SectionContent from './components/SectionContent/SectionContent';
-
+import React, { useEffect } from 'react';
+import axios from 'axios';
 import ScrollLock from 'react-scrolllock';
-  
 
-class App extends Component {
+import './App.css';
+import stateManipulator from './stateManipulator';
 
-  targetRef = React.createRef();
-  targetElement = null;
+import RssPlayer from './components/RssPlayer';
 
-  constructor(props) {
-    super(props);
+const SERVER_RSS = 'https://sci-in-ten-server.herokuapp.com/rss';
 
-    this.state = {
-      selectedIndex: 0,
-      rss: null
-    }
+const App = props => {
+
+  const rss = stateManipulator.getStateManipulator('');
+
+  const fetchRSS = async () => {
+    const res = await axios(SERVER_RSS);
+    rss.setState(JSON.stringify(res.data));
   }
 
-  async componentDidMount() {
+  useEffect(() => {
+    fetchRSS();
+  }, []);
 
-    let rss = fetch('https://sci-in-ten-server.herokuapp.com/rss').then(res => res.text()).then(json => {
-      console.log(json);
-    });
-  }
-
-  updatePageContent(index) {
-    this.setState({selectedIndex: index});
-    console.log('Selected index is ' + index);
-  }
-
-  getPageContent() {
-    console.log('getting page content');
-    if (this.state.selectedIndex === 1) {
-      return <About/>;
-    }
-  }
-
-  getHeaderPosition() {
-    return this.state.selectedIndex === 0 ? 'at-bottom' : 'at-top';
-  }
-
-  render() {
-    return (
-      <div className="App" ref={this.targetElement}>
-        <div className="App-contents vh-for-mobile"></div>
-        <div className={"Selected-content vh-for-mobile " + this.getHeaderPosition()}>
-            <Header updatePageContent={this.updatePageContent.bind(this)}/>
-            <SectionContent Content={this.getPageContent()} />
-        </div>
-        <ScrollLock/>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="App">
+      {rss.value ? <RssPlayer rss={rss.value} /> : ''}
+      <ScrollLock/>
+    </div>
+  );
+};
 
 export default App;
