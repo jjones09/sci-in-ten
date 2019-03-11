@@ -1,0 +1,16 @@
+.HeaderNav {
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    background-color: none;
+}
+
+.NavBtnList {
+    align-self: flex-end;
+    vertical-align: center;
+}
+
+.NavBtn {
+    border: none;
+    background: none;
+}

@@ -1,5 +1,10 @@
 import React from 'react';
 import Player from 'react-audio-player';
+import { Button } from 'antd';
+
+import 'antd/dist/antd.css';
+import './RssPlayer.css';
+
 import stateManipulator from '../stateManipulator';
 
 const RssPlayer = props => {
@@ -10,8 +15,12 @@ const RssPlayer = props => {
 
     return (
         <div className="RssPlayer">
-          {rssJson.items.map((item, index) => <a key={`playerLink-${index}`} href='#' onClick={() => episodeIndex.setState(index)}>{item.title}</a>)}
-          {<Player src={rssJson.items[episodeIndex.value].url} controls />}
+          {rssJson.items.map((item, index) => <div><Button
+            style={{width: '100%', textAlign: 'left'}}
+            key={`playerLink-${index}`}
+            type={index === episodeIndex.value ? 'primary' : 'default'}
+            onClick={() => episodeIndex.setState(index)}>{`Episode ${rssJson.items.length - index} - ${item.title}`}</Button></div>)}
+          {<Player src={rssJson.items[episodeIndex.value].url} controls style={{width: '100%'}}/>}
         </div>
       )
 };
