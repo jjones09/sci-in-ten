@@ -11,7 +11,11 @@ const RssPlayer = props => {
 
     const episodeIndex = stateManipulator.getStateManipulator(0);
 
-    const rssJson = props.rss ? JSON.parse(props.rss) : {};
+    let rssJson;
+    if (props.rss) {
+      const secureRss = props.rss.split('http:').join('https:');
+      rssJson = JSON.parse(secureRss);
+    }
 
     return (
         <div className="RssPlayer">
