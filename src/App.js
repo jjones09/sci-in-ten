@@ -1,62 +1,40 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+import { Route } from 'react-router-dom';
+import { ClipLoader } from 'react-spinners';
+import axios from 'axios';
+
 import './App.css';
+import stateManipulator from './stateManipulator';
 
-import About from './components/About/About';
-import Header from './components/Header/Header';
-import SectionContent from './components/SectionContent/SectionContent';
+import HeaderNav from './components/HeaderNav/HeaderNav';
+import Home from './components/Home';
+import RssPlayer from './components/RssPlayer/RssPlayer';
 
-import ScrollLock from 'react-scrolllock';
-  
+const SERVER_RSS = 'https://sci-in-ten-server.herokuapp.com/rss';
 
-class App extends Component {
+const App = props => {
 
-  targetRef = React.createRef();
-  targetElement = null;
+  const rss = stateManipulator.getStateManipulator('');
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedIndex: 0,
-      rss: null
-    }
+  const fetchRSS = async () => {
+    const res = await axios(SERVER_RSS);
+    rss.setState(JSON.stringify(res.data));
   }
 
-  async componentDidMount() {
+  useEffect(() => {
+    fetchRSS();
+  }, []);
 
-    let rss = fetch('https://sci-in-ten-server.herokuapp.com/rss').then(res => res.text()).then(json => {
-      console.log(json);
-    });
-  }
-
-  updatePageContent(index) {
-    this.setState({selectedIndex: index});
-    console.log('Selected index is ' + index);
-  }
-
-  getPageContent() {
-    console.log('getting page content');
-    if (this.state.selectedIndex === 1) {
-      return <About/>;
-    }
-  }
-
-  getHeaderPosition() {
-    return this.state.selectedIndex === 0 ? 'at-bottom' : 'at-top';
-  }
-
-  render() {
-    return (
-      <div className="App" ref={this.targetElement}>
-        <div className="App-contents vh-for-mobile"></div>
-        <div className={"Selected-content vh-for-mobile " + this.getHeaderPosition()}>
-            <Header updatePageContent={this.updatePageContent.bind(this)}/>
-            <SectionContent Content={this.getPageContent()} />
-        </div>
-        <ScrollLock/>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="App">
+      <HeaderNav />
+      <Route path='/' exact component={Home} />
+      {/* <Route path='/about/' exact component={About} /> */}
+      <Route path='/episodes/' exact component={props => rss.value ? <RssPlayer rss={rss.value} /> : <ClipLoader />} />
+      {/* <Route path='/contact/' exact component={Contact} /> */}
+      {/* {rss.value ? <RssPlayer rss={rss.value} /> : ''} */}
+    </div>
+  );
+};
 
 export default App;
