@@ -5,25 +5,23 @@ import { NavLink } from 'react-router-dom'
 import 'antd/dist/antd.css';
 import './HeaderNav.css';
 
-import stateManipulator from '../stateManipulator';
-
 const HeaderNav = props => {
 
     return (
         <div className='HeaderNav'>
           <div className='NavBtnList'>
-            <Button className='NavBtn'>
+            <NavLink exact to='/'><Button className='NavBtn'>
                 Home
-            </Button>
-            <Button className='NavBtn'>
+            </Button></NavLink>
+            <NavLink exact to='/about'><Button className='NavBtn'>
                 About
-            </Button>
-            <Button className='NavBtn'>
+            </Button></NavLink>
+            <NavLink exact to='/episodes'><Button className='NavBtn'>
                 Episodes
-            </Button>
-            <Button className='NavBtn'>
+            </Button></NavLink>
+            <NavLink exact to='contact'><Button className='NavBtn'>
                 Contact
-            </Button>
+            </Button></NavLink>
           </div>
         </div>
       )

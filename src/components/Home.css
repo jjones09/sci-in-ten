@@ -1,6 +1,7 @@
 .Home {
   background-image: url('../assets/scienceintenlogo.jpg');
-  height: 85vh;
+  height: 100vh;
+  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

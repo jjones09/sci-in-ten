@@ -5,7 +5,7 @@ import { Button } from 'antd';
 import 'antd/dist/antd.css';
 import './RssPlayer.css';
 
-import stateManipulator from '../stateManipulator';
+import stateManipulator from '../../stateManipulator';
 
 const RssPlayer = props => {
 

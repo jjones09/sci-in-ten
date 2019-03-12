@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
+import { Route } from 'react-router-dom';
+import { ClipLoader } from 'react-spinners';
 import axios from 'axios';
-import ScrollLock from 'react-scrolllock';
 
 import './App.css';
 import stateManipulator from './stateManipulator';
 
-import HeaderNav from './components/HeaderNav';
+import HeaderNav from './components/HeaderNav/HeaderNav';
 import Home from './components/Home';
-import RssPlayer from './components/RssPlayer';
+import RssPlayer from './components/RssPlayer/RssPlayer';
 
 const SERVER_RSS = 'https://sci-in-ten-server.herokuapp.com/rss';
 
@@ -27,9 +28,11 @@ const App = props => {
   return (
     <div className="App">
       <HeaderNav />
-      <Home />
+      <Route path='/' exact component={Home} />
+      {/* <Route path='/about/' exact component={About} /> */}
+      <Route path='/episodes/' exact component={props => rss.value ? <RssPlayer rss={rss.value} /> : <ClipLoader />} />
+      {/* <Route path='/contact/' exact component={Contact} /> */}
       {/* {rss.value ? <RssPlayer rss={rss.value} /> : ''} */}
-      <ScrollLock/>
     </div>
   );
 };
