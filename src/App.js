@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
-import { ClipLoader } from 'react-spinners';
 import axios from 'axios';
 
 import './App.css';
 import stateManipulator from './stateManipulator';
 
-import HeaderNav from './components/HeaderNav/HeaderNav';
-import Home from './components/Home';
-import RssPlayer from './components/RssPlayer/RssPlayer';
+// import HeaderNav from './components/HeaderNav/HeaderNav';
+import Footer from './components/Footer/Footer';
+
+import Home from './containers/Home/Home';
+import Episodes from './containers/Episodes/Episodes';
 
 const SERVER_RSS = 'https://sci-in-ten-server.herokuapp.com/rss';
 
@@ -18,7 +19,7 @@ const App = props => {
 
   const fetchRSS = async () => {
     const res = await axios(SERVER_RSS);
-    rss.setState(JSON.stringify(res.data));
+    rss.setState(JSON.stringify(res.data).split('http:').join('https:'));
   }
 
   useEffect(() => {
@@ -26,13 +27,13 @@ const App = props => {
   }, []);
 
   return (
-    <div className="App">
-      <HeaderNav />
+    <div className='App'>
+      {/* <HeaderNav /> */}
       <Route path='/' exact component={Home} />
       {/* <Route path='/about/' exact component={About} /> */}
-      <Route path='/episodes/' exact component={props => rss.value ? <RssPlayer rss={rss.value} /> : <ClipLoader />} />
+      <Route path='/episodes/:epNo?' exact render={route =><Episodes match={route.match} rss={rss.value} />} />
       {/* <Route path='/contact/' exact component={Contact} /> */}
-      {/* {rss.value ? <RssPlayer rss={rss.value} /> : ''} */}
+      <Footer />
     </div>
   );
 };

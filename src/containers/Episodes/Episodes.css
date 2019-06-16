@@ -1,0 +1,14 @@
+.Episodes {
+    background: url('../../assets/about-page-img.jpg');
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.ContentContainer {
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    align-content: center;
+}

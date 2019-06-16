@@ -6,14 +6,5 @@
     transition: 0.3s;
     border-radius: 1%;
     display: inline-block;
-}
-
-.HeaderLink:hover {
-    background-color: rgba(0,0,0,0.1);
-    color: #532563;
-}
-
-.selected {
-    background-color: rgba(83,37,99,0.4);
-    color: #ffffff;
+    text-decoration: none;
 }

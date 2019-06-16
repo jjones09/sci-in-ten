@@ -1,30 +1,45 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Player from 'react-audio-player';
-import { Button } from 'antd';
 
-import 'antd/dist/antd.css';
+import PlayerItem from '../PlayerItem/PlayerItem';
+
 import './RssPlayer.css';
 
 import stateManipulator from '../../stateManipulator';
 
+const isValidEpisodeNumber = (num, total) => num && num > 0 && num <= total;
+
 const RssPlayer = props => {
+    const player = useRef(null);
 
-    const episodeIndex = stateManipulator.getStateManipulator(0);
+    const episodeIndex = stateManipulator.getStateManipulator(startingIndex);
+    const playing = stateManipulator.getStateManipulator(false);
 
-    let rssJson;
-    if (props.rss) {
-      const secureRss = props.rss.split('http:').join('https:');
-      rssJson = JSON.parse(secureRss);
+    const secureRss = props.rss.split('http:').join('https:');
+    const rssJson = JSON.parse(secureRss);
+
+    const episodeCount = rssJson.items.length;
+
+    let startingIndex = 0;
+
+    if (isValidEpisodeNumber(props.selectedEpisode, episodeCount)) {
+      startingIndex = episodeCount - props.selectedEpisode;
+    }
+
+    const setCurrentEpisode = (e, i) => {
+      episodeIndex.setState(i);
     }
 
     return (
         <div className="RssPlayer">
-          {rssJson.items.map((item, index) => <div><Button
-            style={{width: '100%', textAlign: 'left'}}
+          {rssJson.items.map((item, index) => <PlayerItem
             key={`playerLink-${index}`}
-            type={index === episodeIndex.value ? 'primary' : 'default'}
-            onClick={() => episodeIndex.setState(index)}>{`Episode ${rssJson.items.length - index} - ${item.title}`}</Button></div>)}
-          {<Player src={rssJson.items[episodeIndex.value].url} controls style={{width: '100%'}}/>}
+            selected={episodeIndex.value === index}
+            source={item.url}
+            onClick={e => setCurrentEpisode(e, index)}>
+            {`Episode ${episodeCount - index} - ${item.title}`}</PlayerItem>)}
+          <Player src={rssJson.items[episodeIndex.value].url} controls={true} ref={player} />
+          {/* <PlayerControls /> */}
         </div>
       )
 };

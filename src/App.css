@@ -1,17 +1,11 @@
 .App {
   display: flex;
-  flex-direction: column;
-  align-content: center;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-}
-
-.App-contents {
-  background-image: url("assets/scienceintenlogo.jpg");
-  height: 100vh;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  height: 100%;
+  width: 100%;
+  background-color: #F4F3EF;
 }
 
 .Selected-content {

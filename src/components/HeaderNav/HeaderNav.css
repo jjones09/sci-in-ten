@@ -1,12 +1,13 @@
 .HeaderNav {
-    height: 10vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
-    background-color: none;
+    background-color: white;
     position: fixed;
     right: 0;
     top: 0;
     z-index: 100;
+    padding: 2vh 0;
 }
 
 .NavBtnList {

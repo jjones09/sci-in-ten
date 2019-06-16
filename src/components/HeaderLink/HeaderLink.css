@@ -1,0 +1,21 @@
+.HeaderLink {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.HeaderLink:hover {
+    font-weight: bold;
+}
+
+.HeaderLinkText {
+    color: #5A7DA5;
+}
+
+.header {
+    font-size: 1.2em;
+}
+
+.home {
+    font-size: 1.8em;
+    padding: 5vh 5vw;
+}

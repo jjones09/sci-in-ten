@@ -1,0 +1,19 @@
+.PlayerEpisode {
+    width: 100%;
+    text-align: left;
+    display: block;
+    cursor: pointer;
+    background-color: white;
+    font-weight: 1.5em;
+    padding:0.5em;
+}
+
+.PlayerEpisode:hover {
+    background-color: #5A7DA5;
+    color: white;
+}
+
+.selected {
+    color: white;
+    background-color: #ca8e97;
+}

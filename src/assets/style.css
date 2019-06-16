@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "GliscorGothic";
+  src: url("./fonts/gligoth.eot");
+  src: url("./fonts/gligoth.eot?#iefix") format("embedded-opentype"),
+    url("./fonts/gligoth.otf") format("opentype"),
+    url("./fonts/gligoth.svg") format("svg"),
+    url("./fonts/gligoth.ttf") format("truetype"),
+    url("./fonts/gligoth.woff") format("woff"),
+    url("./fonts/gligoth.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
