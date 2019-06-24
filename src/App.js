@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
+import { Lines } from 'react-svg-textures/lib';
 
 import './App.css';
 import stateManipulator from './stateManipulator';
@@ -13,7 +14,7 @@ import Episodes from './containers/Episodes/Episodes';
 
 const SERVER_RSS = 'https://sci-in-ten-server.herokuapp.com/rss';
 
-const App = props => {
+const App = () => {
 
   const rss = stateManipulator.getStateManipulator('');
 
@@ -30,9 +31,7 @@ const App = props => {
     <div className='App'>
       {/* <HeaderNav /> */}
       <Route path='/' exact component={Home} />
-      {/* <Route path='/about/' exact component={About} /> */}
       <Route path='/episodes/:epNo?' exact render={route =><Episodes match={route.match} rss={rss.value} />} />
-      {/* <Route path='/contact/' exact component={Contact} /> */}
       <Footer />
     </div>
   );

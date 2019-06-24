@@ -27,7 +27,6 @@ const PlayerItem = props => {
             type={props.type}
             onClick={props.onClick}>
             {props.children}
-            <div onClick={downloadEpisode}>Download</div>
         </div>;
 }
  

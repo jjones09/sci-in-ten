@@ -3,7 +3,7 @@ import React from 'react';
 import HeaderLink from '../../components/HeaderLink/HeaderLink';
 import Logo from '../../components/Logo/Logo';
 
-import './Home.css';
+import './Home.scss';
 
 const pages = [
   { title: 'About', route: '/about', style: 'home' },
